@@ -1,12 +1,10 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="Description" content="Put your description here.">
   <base href="/">
-
   <style>
     html,
     body {
@@ -18,11 +16,26 @@
   </style>
   <title>openwc-mycard</title>
 </head>
-
 <body>
   <openwc-mycard></openwc-mycard>
 
   <script type="module" src="./src/openwc-mycard.js"></script>
+  <script>
+    document.getElementById('btn').addEventListener('click', function () {
+      const wrapper = document.getElementById('wrapper');
+      const cardClone = document.querySelector('openwc-mycard').cloneNode(true);
+      wrapper.appendChild(cardClone);
+    });
+    const deleteButton = document.getElementById('deleteBtn');
+  
+    deleteButton.addEventListener('click', function () {
+      const wrapper = document.getElementById('wrapper');
+      const cards = wrapper.querySelectorAll('openwc-mycard');
+      if (cards.length > 1) {
+        const lastCard = cards[cards.length - 1];
+        wrapper.removeChild(lastCard);
+      }
+    });
+  </script>
 </body>
-
 </html>

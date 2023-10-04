@@ -1,6 +1,5 @@
-import { LitElement, html, css } from 'lit';
 
-const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
+import { LitElement, html, css } from 'lit';
 
 class OpenwcMycard extends LitElement {
   static properties = {
@@ -45,12 +44,10 @@ class OpenwcMycard extends LitElement {
   }
 }
   `;
-
   constructor() {
     super();
     this.header = 'My app';
   }
-
   render() {
     return html`
     <title>Card Duplication</title>
@@ -73,6 +70,6 @@ class OpenwcMycard extends LitElement {
     <button id="btn">Add Another Card</button>
     <button id="deleteBtn">Delete Last Card</button>
     `;
-  }
+    }
 }
 customElements.define('openwc-mycard', OpenwcMycard);
