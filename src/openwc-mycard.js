@@ -1,12 +1,38 @@
 
 import { LitElement, html, css } from 'lit';
 
-class OpenwcMycard extends LitElement {
-  static properties = {
-    header: { type: String },
+export class OpenwcMycard extends LitElement {
+  static get properties() {
+    return {
+    name: { 
+      type: String,
+      reflect: true
+    },
+    fname: {
+      position: {
+        type: String,
+      },
+    },
+    top: { type: String},
+    imageDescription: { type: String},
+    accentColor: {
+      type: String,
+      reflect: true,
+      attribute: 'accent-color'
+    }
   }
+  };
 
-  static styles = css`
+  static get styles(){
+    return css`
+    :host([accent-color="blue"]) .card {
+      background-color: blue;
+      color: white;
+    }
+    :host([accent-color="red"]) .card {
+      background-color: red;
+      color: white;
+    }
   .box {
     width: 200px;
     background-color: grey;
@@ -41,11 +67,11 @@ class OpenwcMycard extends LitElement {
 @media screen and (max-width: 799px) {
   .details-button {
     display: none;
-  }
-}
-  `;
+  }`
+};
   constructor() {
     super();
+    this.accessColor = 'blue';
     this.header = 'My app';
   }
   render() {
@@ -58,17 +84,10 @@ class OpenwcMycard extends LitElement {
             <img src="https://elitesportsny.com/wp-content/uploads/2019/02/gettyimages-56613588-2-1362x766.jpg" alt="Rangers Card" class="card-image">
             <div class="card-content card">
                 <h2 class="card-title">New York Rangers Stanley Cup</h2>
-                <p class="card-description hidden">
-                    On this card, there is an iconic picture of the New York Rangers Stanley Cup win in 1994. This was the last time they won the Stanley Cup, where they bested the Vancouver Canucks in a seven-game series. They won with an electric goal in overtime of game 7, which resulted in a final score of 2-1 Rangers.
-                </p>
-                <a href="#" class="details-button">Details</a>
-                <button class="color-toggle-button">Toggle Color</button>
-                <button class="change-title-button">Change Title</button>
+                <details><summary>Details</summary><slot></slot></details>
             </div>
         </div>
     </div>
-    <button id="btn">Add Another Card</button>
-    <button id="deleteBtn">Delete Last Card</button>
     `;
     }
 }

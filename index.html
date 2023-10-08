@@ -17,25 +17,51 @@
   <title>openwc-mycard</title>
 </head>
 <body>
-  <openwc-mycard></openwc-mycard>
-
+  <div class = "buttons">
+    <button class = "duplicate">Duplicate</button>
+    <button class = "changeHeading" class="change">Change Heading</button>
+    <button class = "background-color">Change Color</button>
+    <button id = "deleteLast">Delete</button>
+    <div id = "app">
+      <openwc-mycard>On this card, there is an iconic picture of the New York Rangers Stanley Cup win in 1994. This was the last time they won the Stanley Cup, where they bested the Vancouver Canucks in a seven-game series. They won with an electric goal in overtime of game 7, which resulted in a final score of 2-1 Rangers.</openwc-mycard>
+    </div>
+  </div>
+  
   <script type="module" src="./src/openwc-mycard.js"></script>
   <script>
-    document.getElementById('btn').addEventListener('click', function () {
-      const wrapper = document.getElementById('wrapper');
-      const cardClone = document.querySelector('openwc-mycard').cloneNode(true);
-      wrapper.appendChild(cardClone);
+    document.querySelector('.duplicate').addEventListener('click', function(e) {
+      const cloneItem= document.querySelector('openwc-mycard').cloneNode();
+      document.querySelector('#app').appendChild(cloneItem)
     });
-    const deleteButton = document.getElementById('deleteBtn');
-  
-    deleteButton.addEventListener('click', function () {
-      const wrapper = document.getElementById('wrapper');
-      const cards = wrapper.querySelectorAll('openwc-mycard');
-      if (cards.length > 1) {
-        const lastCard = cards[cards.length - 1];
-        wrapper.removeChild(lastCard);
+
+    const changecolor = document.querySelector(".background-color");
+    changecolor.addEventListener("click", function (e) {
+      if(document.querySelector("openwc-mycard").accentColor != "blue"){
+        document.querySelector("openwc-mycard").accentColor = "blue";
+      }
+      else{
+        document.querySelector("openwc-mycard").accentColor = "red";
       }
     });
-  </script>
-</body>
-</html>
+
+    document.querySelector('changeHeading').addEventListener('click', function(e) {
+      let name = prompt ("Name Card...");
+      if(name) {
+        document.querySelector('openwc-mycard').shadowRoot.querySelector('.wrapper h3').innerText=name;
+      }
+    });
+
+    document.querySelector('#deleteLast').addEventListener('click', function(e) {
+      let wantsTo = confirm("Are you sure?")
+      if (wantsTo) {
+        if(document.querySelector('#app :last-child') !== document.querySelector('openwc-mycard')) {
+        document.querySelector('#app :last-child').remove();
+      }
+      else{
+        alert("Cannot delete card")
+      }
+      }
+    });
+    </script>
+  </body>
+  </html>
