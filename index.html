@@ -44,18 +44,21 @@
       }
     });
 
-    document.querySelector('changeHeading').addEventListener('click', function(e) {
+    document.querySelector('.changeHeading').addEventListener('click', function(e) {
       let name = prompt ("Name Card...");
       if(name) {
-        document.querySelector('openwc-mycard').shadowRoot.querySelector('.wrapper h3').innerText=name;
+        document.querySelector('openwc-mycard').shadowRoot.querySelector('.card-title').innerText=name;
       }
     });
 
     document.querySelector('#deleteLast').addEventListener('click', function(e) {
       let wantsTo = confirm("Are you sure?")
       if (wantsTo) {
-        if(document.querySelector('#app :last-child') !== document.querySelector('openwc-mycard')) {
-        document.querySelector('#app :last-child').remove();
+        const allCardClones = document.querySelectorAll('openwc-mycard');
+        if (allCardClones.length > 1) {
+        allCardClones[allCardClones.length - 1].remove();
+        }
+    
       }
       else{
         alert("Cannot delete card")
