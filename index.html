@@ -19,7 +19,7 @@
 <body>
   <div class = "buttons">
     <button class = "duplicate">Duplicate</button>
-    <button class = "changeHeading" class="change">Change Heading</button>
+    <button class = "changeHeading">Change Heading</button>
     <button class = "background-color">Change Color</button>
     <button id = "deleteLast">Delete</button>
     <div id = "app">
@@ -44,7 +44,7 @@
       }
     });
 
-    document.querySelector('changeHeading').addEventListener('click', function(e) {
+    document.querySelector('.changeHeading').addEventListener('click', function(e) {
       let name = prompt ("Name Card...");
       if(name) {
         document.querySelector('openwc-mycard').shadowRoot.querySelector('.wrapper h3').innerText=name;
