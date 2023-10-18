@@ -1,5 +1,6 @@
 
 import { LitElement, html, css } from 'lit';
+import "@lrnwebcomponents/meme-maker/meme-maker.js";
 
 export class OpenwcMycard extends LitElement {
   static get properties() {
@@ -88,6 +89,8 @@ export class OpenwcMycard extends LitElement {
             </div>
         </div>
     </div>
+    <meme-maker alt="New York Rangers" image-url="https://images2.minutemediacdn.com/image/fetch/w_850,h_560,c_fill,g_auto,f_auto/https%3A%2F%2Fbluelinestation.com%2Fwp-content%2Fuploads%2Fimagn-images%2F2017%2F07%2F12893669-850x560.jpeg" top-text="New York" bottom-text="Rangers">
+</meme-maker>
     `;
     }
 }
